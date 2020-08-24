@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # vuex_lhb
 
 > A Vue.js project
@@ -19,3 +20,7 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# vuex_hb
+vuex
+>>>>>>> 971ac8bedff6b6c6b8cf35b4a6ab5c317b4ead6c
