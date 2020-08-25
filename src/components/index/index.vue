@@ -4,6 +4,9 @@
     <div @click="add">加1</div>
     <div>{{count}}</div>
     <div @click="noadd">减1</div>
+
+    <div>{{name}}</div>
+    <div>{{doneName}}</div>
   </div>
 </template>
 
@@ -18,7 +21,23 @@
     computed: {
       count() {
         return this.$store.state.count
+      },
+      name(){
+        return this.$store.state.name
+      },
+      doneName(){
+        return this.$store.getters.doneName
       }
+    },
+    created() {
+
+    },
+    mounted() {
+      let tiemr = setTimeout(()=>{
+        clearTimeout(tiemr)
+        // 更改name
+        this.$store.commit('changeName','luohongbiao')
+      },3000)
     },
     methods: {
       add() {
