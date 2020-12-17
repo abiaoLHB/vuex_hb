@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    plugins: [myPlugin],
+    // plugins: [myPlugin],
     state: {
         count: 0,
         name: "admin"
@@ -27,11 +27,11 @@ const store = new Vuex.Store({
 })
 
 // 插件
-const myPlugin = store => {
-    store.subscribe((mutation, state) => {
-        console.log("每次mutation之后调用")
-    })
-}
+// const myPlugin = store => {
+//     store.subscribe((mutation, state) => {
+//         console.log("每次mutation之后调用")
+//     })
+// }
 
 
 export default store

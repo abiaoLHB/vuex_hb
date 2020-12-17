@@ -6,6 +6,7 @@ import router from './router'
 import store from './store/store';
 
 Vue.config.productionTip = false
+Vue.config.performance = true
 // Vue.use(Vuex)
 
 new Vue({
