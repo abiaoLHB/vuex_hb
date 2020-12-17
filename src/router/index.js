@@ -14,7 +14,7 @@ export default new Router({
     },
     {
       path: '/second',
-      name: "Second",
+      name: "second",
       component: () => import('@/components/second/second')
     },
     {
@@ -41,7 +41,7 @@ export default new Router({
     },
     {
       path: '/user/:id',
-      name: "User",
+      name: "user",
       component: () => import('@/components/user/user'),
 
     },

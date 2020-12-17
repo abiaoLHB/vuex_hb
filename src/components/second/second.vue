@@ -56,6 +56,7 @@
         created() {
             console.log("second--page1")
             console.log(this.$route)
+            console.log(this.$route.params)
             console.log("second--page1")
 
         },

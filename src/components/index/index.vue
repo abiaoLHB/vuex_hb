@@ -14,6 +14,7 @@
     <div @click="goUser">去user-zhangsan</div>
     <div @click="goUser2">去user-lisi</div>
     <div @click="notFond">匹配不到</div>
+    <div @click="codeingRouter">编程式导航</div>
 
     <router-link to="user_index">user_index</router-link>
 
@@ -60,7 +61,9 @@
       }
     },
     created() {
-      console.log("index-page")
+      console.log("index-router")
+      console.log(this.$router)
+      console.log("index-router")
     },
     mounted() {
       let tiemr = setTimeout(() => {
@@ -86,20 +89,48 @@
           path: 'second'
         })
       },
-      goUser(){
+      goUser() {
         this.$router.push({
-          path:'user/zhangData'
+          path: 'user/zhangData'
         })
       },
-      goUser2(){
+      goUser2() {
         this.$router.push({
-          path:'user/lisi'
+          path: 'user/lisi'
         })
       },
-      notFond(){
+      notFond() {
         this.$router.push({
-          path:'bababbaba' //匹配不到会进入404
+          path: 'bababbaba' //匹配不到会进入404
         })
+      },
+      codeingRouter() {
+        // 编程式导航：参数可以是一个字符串路径，或者一个描述地址的对象
+
+        // 字符串 路由
+        // this.$router.push('second')
+
+        // 对象 路由
+        // this.$router.push({
+        //   path:'second'
+        // })
+
+        // 命名路由
+        this.$router.push({
+          name:'second',
+          params:{
+            address:'Beiing'
+          }
+        })
+
+        // 带查询参数
+        // this.$router.push({
+        //   path:'second',
+        //   query:{
+        //     plan:'private'
+        //   }
+        // })
+
       }
     },
   }
