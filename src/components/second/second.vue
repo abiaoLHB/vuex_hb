@@ -29,9 +29,9 @@
                 href: "href",
                 event: 'click',
                 aMessage: "Goodbye!",
-                firstName:'Foo',
-                lastName:'Bar',
-                fullName:'Foo Bar',
+                firstName: 'Foo',
+                lastName: 'Bar',
+                fullName: 'Foo Bar',
             }
         },
         computed: {
@@ -41,15 +41,15 @@
             now: function () {
                 return Date.now()
             },
-            fullName1:function(){
+            fullName1: function () {
                 return this.firstName + ' ' + this.lastName
             }
         },
-        watch:{
-            firstName:function(val){
+        watch: {
+            firstName: function (val) {
                 this.fullName = val + ' ' + this.lastName
             },
-            lastName:function(val){
+            lastName: function (val) {
                 this.fullName = this.firstName + ' ' + val
             }
         },
@@ -84,7 +84,9 @@
             },
             soSomthing2() {
                 console.log('soSomthing2')
-            }
+            },
+
+         
         },
     }
 </script>

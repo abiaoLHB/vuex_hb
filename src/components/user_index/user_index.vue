@@ -38,11 +38,15 @@
             console.log(this.$route.params.id)
             console.log("路由参数")
         },
+        beforeEnter(){
+            console.log('user_index---->beforeEnter')
+        },
+
         beforeRouteEnter(to, from, next) {
-            console.log("beforeRouteEnter----")
+            console.log("user_index---->beforeEnter----")
             console.log(to)
             console.log(from)
-            console.log("beforeRouteEnter----")
+            console.log("user_index---->beforeEnter----")
             next()
         },
         beforeRouteUpdate(to, from, next) {

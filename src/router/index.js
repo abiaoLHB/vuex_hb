@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Index from '@/components/index/index'
-// import Second from '@/components/second/second'
+import nameView from '@/components/nameView/nameView'
+import Foo from '@/components/Foo/Foo'
+import Bar from '@/components/Bar/Bar'
+import Baz from '@/components/Baz/Baz'
 
 Vue.use(Router)
-
-export default new Router({
+let router =  new Router({
   routes: [
     {
       path: '/',
@@ -15,7 +16,16 @@ export default new Router({
     {
       path: '/second',
       name: "second",
-      component: () => import('@/components/second/second')
+      component: () => import('@/components/second/second'),
+      // redirect:"/user_index"//重定向路由
+      // redirect:{name:'user_index'}//重定向路由-命名路由
+      // redirect:to=>{
+      //   console.log("second路由重定向函数")
+      //   console.log(to)
+      //   return './user_index'
+      //   console.log("second路由重定向函数")
+      // }
+
     },
     {
       path: '/user_index',
@@ -45,6 +55,22 @@ export default new Router({
       component: () => import('@/components/user/user'),
 
     },
+    {
+      path: '/namerouter',
+      name: "namerouter", // 加上name，就叫命名路由了
+      component: () => import('@/components/namerouter/namerouter'),
+
+    },
+    {
+      path: '/nameView',
+      name: "nameView",
+      components: {
+        default:nameView,
+        one: Bar,
+        two: Baz,
+        three: Foo
+      }
+    },
     // 通配符路由应该放在最后
     {
       path: '*',
@@ -53,3 +79,13 @@ export default new Router({
     },
   ]
 })
+
+router.beforeEach((to,from,next)=>{
+  console.log("全局前置守卫")
+  console.log(to)
+  console.log(from)
+  console.log("全局前置守卫")
+  next()
+})
+
+export default router

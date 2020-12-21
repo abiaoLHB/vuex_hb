@@ -3,10 +3,18 @@
     <div>{{msg}}</div>
     <div @click="add">加1</div>
     <div>{{count}}</div>
+    <div>{{name}}</div>
+    <div @click="changeAddress">地址：{{newAddress}}</div>
     <div @click="noadd">减1</div>
 
     <div>{{name}}</div>
-    <div>{{doneName}}</div>
+    <br>
+    <div>{{doneListaa}}6666</div>
+    <br>
+    <br>
+    <div>是否及格:{{getSix}}</div>
+    <br>
+    <!-- <div>{{doneName}}</div> -->
     <div @click="goNext">下一页</div>
 
     <div v-if="isShow">v-show</div>
@@ -15,8 +23,12 @@
     <div @click="goUser2">去user-lisi</div>
     <div @click="notFond">匹配不到</div>
     <div @click="codeingRouter">编程式导航</div>
-
     <router-link to="user_index">user_index</router-link>
+
+    <div @click="goName">去命名路由</div>
+    <br>
+    <router-link to="nameView">命名视图</router-link>
+    <br>
 
     <ul>
       <li class="li1" :class="{'orange':isOrange}">1</li>
@@ -29,6 +41,9 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+  import {mapGetters} from 'vuex';
+
   export default {
     name: 'Index',
     data() {
@@ -47,22 +62,40 @@
 
     // 绑定class的数组用法
 
-
-
+    // computed: mapState({
+    //   count: state => state.count,
+    //   newAddress: 'address',//传字符串，等同于 state=>state.address
+    //   name: state => state.name,
+    //   doneListaa: state => state.getters.doneList,
+    //   // doneName:state =>state.getters.doneName
+    // }),
     computed: {
       count() {
         return this.$store.state.count
+      },
+      newAddress() {
+        return this.$store.state.address
       },
       name() {
         return this.$store.state.name
       },
       doneName() {
         return this.$store.getters.doneName
-      }
+      },
+      doneListaa() {
+        return this.$store.getters.doneList
+      },
+      getSix() {
+        return this.$store.getters.getSix(60)
+      },
+
     },
     created() {
       console.log("index-router")
       console.log(this.$router)
+      console.log(this.$router.app)
+      console.log(this.$router.mode)
+      console.log(this.$router.currentRoute)
       console.log("index-router")
     },
     mounted() {
@@ -73,6 +106,13 @@
       }, 3000)
     },
     methods: {
+      beforeRouteEnter(to, from, next) {
+        console.log("index---->beforeEnter----")
+        console.log(to)
+        console.log(from)
+        console.log("index---->beforeEnter----")
+        next()
+      },
       toggleShow() {
         this.isShow = !this.isShow
       },
@@ -83,6 +123,9 @@
       noadd() {
         console.log('noadd')
         this.$store.commit('decrement')
+      },
+      changeAddress() {
+        this.$store.commit('changeAddress', parseInt(Math.random() * 10))
       },
       goNext() {
         this.$router.push({
@@ -117,9 +160,9 @@
 
         // 命名路由
         this.$router.push({
-          name:'second',
-          params:{
-            address:'Beiing'
+          name: 'second',
+          params: {
+            address: 'Beiing'
           }
         })
 
@@ -131,6 +174,26 @@
         //   }
         // })
 
+      },
+
+      goName() {
+        this.$router.push({
+          name: 'namerouter',
+          params: {
+            name: 'luohongbiao',
+            age: 30,
+            address: 'beijing'
+          }
+        })
+      },
+      beforeRouteLeave(to, from, next) {
+        console.log("Do you really want to leave? you have unsaved changes")
+        const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+        if (answer) {
+          next()
+        } else {
+          next(false)
+        }
       }
     },
   }
