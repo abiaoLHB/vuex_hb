@@ -42,7 +42,7 @@
 
 <script>
   import { mapState } from 'vuex';
-  import {mapGetters} from 'vuex';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'Index',
@@ -90,6 +90,11 @@
       },
 
     },
+    beforeCreate() {
+      console.log('beforeCreate---')
+      console.log(this.msg)
+      console.log('beforeCreate+++')
+    },
     created() {
       console.log("index-router")
       console.log(this.$router)
@@ -97,14 +102,37 @@
       console.log(this.$router.mode)
       console.log(this.$router.currentRoute)
       console.log("index-router")
+      console.log('created---')
+      console.log(this.msg)
+      console.log('created+++')
+
+      setTimeout(() => {
+          // this.msg = "更新"
+      }, 3000);
+    },
+    beforeMount() {
+      console.log('beforeMount---')
+      console.log(this.msg)
+      console.log('beforeMount+++')
+
     },
     mounted() {
+      console.log('mounted---')
+      console.log(this.msg)
+      console.log('mounted+++')
       let tiemr = setTimeout(() => {
         clearTimeout(tiemr)
         // 更改name
         this.$store.commit('changeName', 'luohongbiao')
       }, 3000)
     },
+    beforeUpdate() {
+      console.log('更新之前-----------')
+    },
+    updated(e) {
+      console.log("更新------------------")
+    },
+
     methods: {
       beforeRouteEnter(to, from, next) {
         console.log("index---->beforeEnter----")
